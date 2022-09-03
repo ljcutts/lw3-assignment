@@ -8,8 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         rainbow:
-          "linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red)",
-        "footer-texture": "url('/img/footer-texture.png')",
+          "linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red)"
       },
     },
   },
