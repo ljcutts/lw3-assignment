@@ -51,7 +51,7 @@ const Home: NextPage = () => {
   },[address])
 
   return (
-    <div className="bg-rainbow bg-no-repeat bg-[length:auto_900px] h-screen flex justify-center items-center">
+    <div className="bg-rainbow bg-no-repeat bg-cover h-screen flex justify-center items-center">
       <Head>
         <title>LW3 And BuildSpace NFTs</title>
         <meta
