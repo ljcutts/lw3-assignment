@@ -74,7 +74,6 @@ const Home: NextPage = () => {
         {({ chain, openAccountModal, openConnectModal, mounted, openChainModal }) => {
           const ready = mounted;
           const connected = ready && chain;
-          console.log(chain?.id)
           {
             if (!connected) {
               return (
