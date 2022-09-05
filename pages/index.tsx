@@ -51,7 +51,7 @@ const Home: NextPage = () => {
   },[address])
 
   return (
-    <div className="bg-rainbow bg-no-repeat bg-cover h-screen flex justify-center items-center">
+    <div className="bg-rainbow bg-cover h-[900px] flex justify-center items-center">
       <Head>
         <title>LW3 And BuildSpace NFTs</title>
         <meta
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
               return (
                 <>
                   <div className="w-full flex items-center flex-col">
-                    <div className="flex justify-center ml-5 mt-5 mb-24">
+                    <div className="flex justify-center ml-5 mt-5 mb-16">
                       <h1 className="font-bold uppercase text-xl text-white">
                         Scroll the boxes to go through your nfts for each
                         collection
