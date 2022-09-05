@@ -71,9 +71,10 @@ const Home: NextPage = () => {
       </Head>
 
       <ConnectButton.Custom>
-        {({ chain, openAccountModal, openConnectModal, mounted }) => {
+        {({ chain, openAccountModal, openConnectModal, mounted, openChainModal }) => {
           const ready = mounted;
           const connected = ready && chain;
+          console.log(chain?.id)
           {
             if (!connected) {
               return (
@@ -96,89 +97,105 @@ const Home: NextPage = () => {
             } else {
               return (
                 <>
-                  <div className="w-full flex items-center flex-col">
-                    <div className="flex justify-center ml-5 mt-5 mb-16">
-                      <h1 className="font-bold uppercase text-xl text-white">
-                        Scroll the boxes to go through your nfts for each
-                        collection
+                  {chain?.id !== 137 && (
+                    <div className="flex flex-col justify-center items-center">
+                      <h1 className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-yellow-500">
+                        Switch Network To The Polygon Mainnet In Order To View NFTs
                       </h1>
+                      <button
+                        className="rounded-2xl bg-black ml-5 text-white h-8 shadow-button w-40 font-bold transition ease-in-out hover:opacity-50"
+                        onClick={openChainModal}
+                        type="button"
+                      >
+                        Switch To Polygon
+                      </button>
                     </div>
-                    <div className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-red-400">
-                      LearnWeb3 NFTs
-                    </div>
-                    <div className="flex justify-around mb-16 items-center w-full">
-                      <div className="bg-yellow-400 px-3 pt-3 overflow-scroll flex items-center rounded-lg w-1/2 md:w-4/6 h-48 outline outline-black">
-                        {lw3NFTs.length !== 0 ? (
-                          lw3NFTs.map((nft, i) => {
-                            return (
-                              <div key={i}>
-                                <img
-                                  src={nft.rawMetadata?.image?.replace(
-                                    "ipfs://",
-                                    "https://ipfs.io/ipfs/"
-                                  )}
-                                  className=" max-w-[190px] md:max-w-[250px] mr-7 rounded-md"
-                                  alt=""
-                                />
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <div className="flex justify-center items-center w-full">
-                            <p className="uppercase font-bold italic">
-                              You dont own any learnweb3dao nfts
-                            </p>
-                          </div>
-                        )}
+                  )}
+                  {chain?.id === 137 && (
+                    <div className="w-full flex items-center flex-col">
+                      <div className="flex justify-center ml-5 mt-5 mb-16">
+                        <h1 className="font-bold uppercase text-xl text-white">
+                          Scroll the boxes to go through your nfts for each
+                          collection
+                        </h1>
                       </div>
-                    </div>
-                    <button
-                      className="rounded-2xl relative bottom-5 bg-black text-white h-8 shadow-button w-36 font-bold transition ease-in-out hover:opacity-50"
-                      onClick={openAccountModal}
-                      type="button"
-                    >
-                      Disconnect
-                    </button>
-                    <div className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-red-400">
-                      BuildSpace NFTs
-                    </div>
-                    <div className="flex justify-around mb-16 items-center w-full">
-                      <div className="bg-green-500 px-3 pt-3 overflow-scroll flex items-center rounded-lg w-1/2 md:w-4/6 h-48 outline outline-black">
-                        {buildspaceNFTs.length !== 0 ? (
-                          buildspaceNFTs.map((nft, i) => {
-                            return (
-                              <div key={i}>
-                                {!nft.rawMetadata?.image?.includes("mp4") && (
+                      <div className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-red-400">
+                        LearnWeb3 NFTs
+                      </div>
+                      <div className="flex justify-around mb-16 items-center w-full">
+                        <div className="bg-yellow-400 px-3 pt-3 overflow-scroll flex items-center rounded-lg w-1/2 md:w-4/6 h-48 outline outline-black">
+                          {lw3NFTs.length !== 0 ? (
+                            lw3NFTs.map((nft, i) => {
+                              return (
+                                <div key={i}>
                                   <img
-                                    className="max-w-[150px] mr-7"
-                                    src={nft.rawMetadata?.image}
+                                    src={nft.rawMetadata?.image?.replace(
+                                      "ipfs://",
+                                      "https://ipfs.io/ipfs/"
+                                    )}
+                                    className=" max-w-[190px] md:max-w-[250px] mr-7 rounded-md"
+                                    alt=""
                                   />
-                                )}
-                                {nft.rawMetadata?.image?.includes("mp4") && (
-                                  <video
-                                    className="max-w-[185px] mr-7"
-                                    autoPlay
-                                    loop
-                                  >
-                                    <source
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <div className="flex justify-center items-center w-full">
+                              <p className="uppercase font-bold italic">
+                                You dont own any learnweb3dao nfts
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <button
+                        className="rounded-2xl relative bottom-5 bg-black text-white h-8 shadow-button w-36 font-bold transition ease-in-out hover:opacity-50"
+                        onClick={openAccountModal}
+                        type="button"
+                      >
+                        Disconnect
+                      </button>
+                      <div className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-red-400">
+                        BuildSpace NFTs
+                      </div>
+                      <div className="flex justify-around mb-16 items-center w-full">
+                        <div className="bg-green-500 px-3 pt-3 overflow-scroll flex items-center rounded-lg w-1/2 md:w-4/6 h-48 outline outline-black">
+                          {buildspaceNFTs.length !== 0 ? (
+                            buildspaceNFTs.map((nft, i) => {
+                              return (
+                                <div key={i}>
+                                  {!nft.rawMetadata?.image?.includes("mp4") && (
+                                    <img
+                                      className="max-w-[150px] mr-7"
                                       src={nft.rawMetadata?.image}
-                                      type="video/mp4"
                                     />
-                                  </video>
-                                )}
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <div className="flex justify-center items-center w-full">
-                            <p className="uppercase font-bold italic">
-                              You dont own any buildspace nfts
-                            </p>
-                          </div>
-                        )}
+                                  )}
+                                  {nft.rawMetadata?.image?.includes("mp4") && (
+                                    <video
+                                      className="max-w-[185px] mr-7"
+                                      autoPlay
+                                      loop
+                                    >
+                                      <source
+                                        src={nft.rawMetadata?.image}
+                                        type="video/mp4"
+                                      />
+                                    </video>
+                                  )}
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <div className="flex justify-center items-center w-full">
+                              <p className="uppercase font-bold italic">
+                                You dont own any buildspace nfts
+                              </p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </>
               );
             }
