@@ -78,8 +78,8 @@ const Home: NextPage = () => {
             if (!connected) {
               return (
                 <>
-                  <div className="flex flex-col justify-center items-center">
-                    <h1 className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-yellow-500">
+                  <div className="flex flex-col justify-center items-center relative bottom-7">
+                    <h1 className="ml-4 md:ml-0 pb-5 font-bold italic text-xl text-yellow-400">
                       Connect Wallet Below To View Your LearnWeb3 And BuildSpace
                       NFTS
                     </h1>
